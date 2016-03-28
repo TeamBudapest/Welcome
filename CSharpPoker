@@ -1,0 +1,138 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JollyPoker
+
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Console.OutputEncoding = Encoding.UTF8;
+            while (true)
+            {
+
+                string[] cardId = new string[13];
+                cardId[0] = " A";
+                cardId[1] = " K";
+                cardId[2] = " Q";
+                cardId[3] = " J";
+                cardId[4] = "10";
+                cardId[5] = " 9";
+                cardId[6] = " 8";
+                cardId[7] = " 7";
+                cardId[8] = " 6";
+                cardId[9] = " 5";
+                cardId[10] = " 4";
+                cardId[11] = " 3";
+                cardId[12] = " 2";
+
+                string[] cardCol = new string[4];
+                cardCol[3] = "\u2660";
+                cardCol[2] = "\u2665";
+                cardCol[1] = "\u2666";
+                cardCol[0] = "\u2663";
+                string[] cardStack = new string[52];
+                int cardNum = 0;
+                for (int i = 0; i <= 12; i++)
+                {
+
+                    for (int j = 0; j <= 3; j++)
+                    {
+
+                        cardStack[cardNum] = ((cardId[i]) + (cardCol[j]));
+                        cardNum++;
+
+                    }
+                    Console.WriteLine();
+
+                }
+
+;
+                Console.Clear();
+                Console.WriteLine("Popo's Jolly Poker v1.0");
+                Console.WriteLine("You multiply your bet by 10");
+                Console.WriteLine("When same cards appear next to each other");
+                Console.Write("Enter your First Name:");
+                string playerName = Console.ReadLine();
+                Console.Write("Enter your Last Name:");
+                string playerLastName = Console.ReadLine();
+                Console.Write("Enter amount of credit:");
+                int cash = int.Parse(Console.ReadLine());
+                Console.Write("Choose your Bet:");
+                int bet = int.Parse(Console.ReadLine());
+                int startCash = cash;
+                while (cash > 0)
+                {
+                    cash = cash - bet;
+                    Console.Clear();
+                    Console.WriteLine("Welcome and good luck {0}", playerName);
+                    Console.WriteLine("Cash:{0} $ Bet:{1} $", cash, bet);
+                    Random randomer = new Random();
+                    int randomCard1 = randomer.Next(52);
+                    int randomCard2 = randomer.Next(52);
+                    int randomCard3 = randomer.Next(52);
+                    int randomCard4 = randomer.Next(52);
+                    int randomCard5 = randomer.Next(52);
+                    Console.WriteLine("*---*---*---*---*---*");
+                    Console.Write("*" + cardStack[randomCard1] + "*");
+                    Console.Write(cardStack[randomCard2] + "*");
+                    Console.Write(cardStack[randomCard3] + "*");
+                    Console.Write(cardStack[randomCard4] + "*");
+                    Console.WriteLine(cardStack[randomCard5] + "*");
+                    Console.WriteLine("*---*---*---*---*---*");
+
+                    if (randomCard1 == randomCard2)
+                    {
+                        int win = 10*bet;
+                        cash = cash + win;
+                        Console.WriteLine("You Win {0}$ Congratulations!", win); 
+                    }
+                   if (randomCard2 == randomCard3)
+                   {
+                        int win = 10*bet;
+                       cash = cash + win;
+                       Console.WriteLine("You Win {0}$ Congratulations!", win);
+                    }
+                   if (randomCard3 == randomCard4)
+                    {
+                       int win = 10*bet;
+                        cash = cash + win;
+                        Console.WriteLine("You Win {0}$ Congratulations!", win);
+                    }
+                    if (randomCard4 == randomCard5)
+                    {
+                       int win = 10*bet;
+                        cash = cash + win;
+                        Console.WriteLine("You Win {0}$ Congratulations!", win);
+                    }
+
+
+                    Console.WriteLine("Press ANY key to deal again");
+                    Console.ReadKey();
+                }
+                Console.Clear();
+                Console.WriteLine("Dear {0} {1},",playerName, playerLastName);
+                Console.WriteLine("You have bankrupted.");
+                
+                if (cash < 0)
+                {
+                    Console.WriteLine("You lend additional {0}$", Math.Abs(cash));
+                    Console.WriteLine("Your total credit is {0}$",Math.Abs(cash)+startCash);
+                    Console.WriteLine("Don't forget to pay the lady!");
+                    Console.WriteLine();
+
+                }
+                Console.WriteLine("Thanks for palying Popo's Jolly Poker x 10 v1.0");
+                Console.WriteLine("Press ANY key to start over or CTRL+Z to exit");
+                Console.ReadKey();
+            }
+        }
+    }
+}
+
+ 
