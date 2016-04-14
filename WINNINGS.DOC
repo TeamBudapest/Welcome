@@ -1,8 +1,9 @@
-Royal Flush - 500 - 5 cards in a row e.g 2-3-4-5-6 from one colors
-Street Flush - 100 - 5 cards from one color
+Royal Flush - 500 - 5 cards in a row e.g 10-j-Q-K-A from one colors - only
+Street Flush - 100 - 5 cards in a row e.g 2-3-4-5-6 from one colors
 Poker - 40 - Four same cards from all colors
 Full House - 10 - Three of a kind + one pair
 Street - 5 - 5 cards in a row e.g 6-7-8-9-10 from different colors
 Three of a kind - 3 -Three in a row no matter 
 Two Pairs - 2 - Two pairs no matter
 High Pair - 1 - Pair higher than 6
+
