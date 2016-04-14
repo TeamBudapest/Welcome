@@ -14,20 +14,27 @@ Jolly Poker
 -randomize
 -draw cards
 
-3. Make credit and Bet logic
+3. Make credit and Bet and Console logic
 -initialize bet
 -calculate credit - bet >= 0
+-At startup screen select bet
+-message on console: "Good Luck !!! Please select your bet and hit Enter.
 
 
 
 4.1 Round 1
 -draw 5 cards
 -hold some of them
+-message on console: "Use 1,2,3,4,5 key to select and hit Enter"
 
 4.2 Round 2 
 -draw new cards for discarded cards
 -check for winning
 -make changes in variables
+-publish on last win square
+-message on console when win:"You win !!! Enter bet and hit Enter"
+*only Enter hited continue on last bet
+-message on console:"Sorry !!! Enter bet and hit Enter"
 
 
 5. Make credit and Bet logic
