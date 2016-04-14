@@ -1,0 +1,7 @@
+Jolly poker is a game with stack of cards(52).
+Player start with 1000 $ credit.
+Player can choose bet from 1 $ to 100 $ per draw of 2 rounds.
+Player draw 5 cards from srtack at Round 1.
+Can choose which cards to hold.
+Unholded cards are changed with new from stack at Round 2.
+Check for winning(see WININGS.DOC). Make changes to bet and cash
