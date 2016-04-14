@@ -1,0 +1,41 @@
+Jolly Poker
+
+1. Make UI
+-welcome screen
+-gameplay screen
+-rules
+-winnings
+-half of fame
+
+
+2. Make card stack
+-colors
+-numbers
+-randomize
+-draw cards
+
+3. Make credit and Bet logic
+-initialize bet
+-calculate credit - bet >= 0
+
+
+
+4.1 Round 1
+-draw 5 cards
+-hold some of them
+
+4.2 Round 2 
+-draw new cards for discarded cards
+-check for winning
+-make changes in variables
+
+
+5. Make credit and Bet logic
+-winnings
+-draw again
+
+6. Presentation
+
+
+
+
