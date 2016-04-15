@@ -23,7 +23,7 @@ public class Hand {
         }
     }
 
-    public void swapCard(List<Card> hand, Deck d, int index) {
+    public void swapCards(List<Card> hand, Deck d, int index) {
         Random rnd = new Random();
         Card c = d.getDeck().get(rnd.nextInt(d.getDeck().size()));
 
