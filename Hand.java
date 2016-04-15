@@ -18,6 +18,7 @@ public class Hand {
 
         for (int i = 0; i < 5; i++) {
             Card card = d.getDeck().get(rnd.nextInt(deck.size()));
+            
             hand.add(card);
             d.removeCardFromDeck(deck, card);
         }
@@ -28,7 +29,8 @@ public class Hand {
         Card c = d.getDeck().get(rnd.nextInt(d.getDeck().size()));
 
         hand.remove(index);
-        d.removeCardFromDeck(d.getDeck(), c);
+        
         hand.add(index, c);
+        d.removeCardFromDeck(d.getDeck(), c);
     }
 }
