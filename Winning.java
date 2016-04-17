@@ -31,7 +31,7 @@ public class Winning {
         SetHandCalc(hand);
     }
 
-    public String GetWinning()
+    public String ToString()
     {
         return winningText;
     }

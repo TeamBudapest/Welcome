@@ -1,11 +1,60 @@
 /**
- * Created by asIo on 17.4.2016 г..
+ * Created by asIo on 17.4.2016 г.
+ *
+ * Създава се обект (инстанция) от класа Game.
+ * -
+ * -   Game game;
+ * -
+ *  За да се вземе залог се изиква
+ *  -
+ *  - game.GetWinning().GetBet()
+ *  -
+ *  За да се вземе текста на печалбата се извиква
+ *  -
+ *  - game.GetWinning().ToString();
+ *  -
+ *  За да се вземе ръката като обект от типа class Hand се извиква
+ *  -
+ *  - game.GetHand();
+ *  -
+ *  При натискане на клавиш се извиква някое от следните събития:
+ *  OnBetUp, OnBetDown, OnHold1, OnHold2, OnHold3, OnHold4, OnHold5, OnDeal.
+ *
+ *  1. OnBetUp - При натискане на клавиша за вдигане на залога. Залога се вдига през 5 - 1, 5, 10, 15 ... , 100.
+ *  -
+ *  - game.OnEventName("OnBetUp");
+ *  -
+ *  2. OnBetDown - При натискане на клавиша за сваляне на залога. Залога се сваля през 5 - 100, 95, ... , 10, 5, 1.
+ *  -
+ *  - game.OnEventName("OnBetDown");
+ *  -
+ *  3. OnHold1 - При натискане на клавиша за задържане на първа карта.
+ *  -
+ *  - game.OnEventName("OnHold1");
+ *  -
+ *  4. OnHold2 - При натискане на клавиша за задържане на втора карта.
+ *  -
+ *  - game.OnEventName("OnHold2");
+ *  -
+ *  5. OnHold3 - При натискане на клавиша за задържане на трета карта.
+ *  -
+ *  - game.OnEventName("OnHold3");
+ *  -
+ *  6. OnHold4 - При натискане на клавиша за задържане на четвърта карта.
+ *  -
+ *  - game.OnEventName("OnHold4");
+ *  -
+ *  7. OnHold5 - При натискане на клавиша за задържане на пета карта.
+ *  -
+ *  - game.OnEventName("OnHold5");
+ *  -
+ *  8. Deal - При натискане на клавиша за ново раздаване.
+ *  -
+ *  - game.OnEventName("Deal");
+ *  -
+ * .
  */
-//import java.util.ArrayList;
-
 import java.util.ArrayList;
-import java.util.List;
-//import java.util.Random;
 
 public class Game {
     public enum events {
@@ -34,7 +83,45 @@ public class Game {
         winning.SetBet(0);
     }
 
-    public void OnEvent(events event) {
+    public void OnEventName(String event)
+    {
+        switch(event)
+        {
+            case "OnBetUp":
+                OnEvent(events.betUp);
+                break;
+            case "OnBetDown":
+                OnEvent(events.betDown);
+                break;
+            case "OnHold1":
+                OnEvent(events.hold1);
+                break;
+            case "OnHold2":
+                OnEvent(events.hold2);
+                break;
+            case "OnHold3":
+                OnEvent(events.hold3);
+                break;
+            case "OnHold4":
+                OnEvent(events.hold4);
+                break;
+            case "OnHold5":
+                OnEvent(events.hold5);
+                break;
+            case "OnDeal":
+                OnEvent(events.deal);
+        }
+    }
+
+    public Hand GetHand() {
+        return hand;
+    }
+
+    public String GetWinning() {
+        return winning.ToString();
+    }
+
+    private void OnEvent(events event) {
 
         switch (event) {
             case hold1:
@@ -54,14 +141,6 @@ public class Game {
                 OnBetDown();
                 break;
         }
-    }
-
-    public Hand GetHand() {
-        return hand;
-    }
-
-    public String GetWinning() {
-        return winning.GetWinning();
     }
 
     private void OnDeal() {
