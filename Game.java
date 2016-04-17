@@ -83,10 +83,8 @@ public class Game {
         winning.SetBet(0);
     }
 
-    public void OnEventName(String event)
-    {
-        switch(event)
-        {
+    public void OnEventName(String event) {
+        switch(event) {
             case "OnBetUp":
                 OnEvent(events.betUp);
                 break;
@@ -169,8 +167,7 @@ public class Game {
         winning.SetHand(hand);
     }
 
-    private void Reset()
-    {
+    private void Reset() {
         deck.getDeck().clear();
         deck.populateDeck();
         hand.getHand().clear();
@@ -197,20 +194,17 @@ public class Game {
         }
 
         int[] ret = new int[swaps.size()];
-        for (int i=0; i < ret.length; i++)
-        {
+        for (int i=0; i < ret.length; i++) {
             ret[i] = swaps.get(i);
         }
         return ret;
     }
 
     private void OnBetUp() {
-        if(winning.GetBet() == 1)
-        {
+        if(winning.GetBet() == 1) {
             winning.AddBet(4);
         }
-        else
-        {
+        else {
             winning.AddBet(5);
         }
     }
