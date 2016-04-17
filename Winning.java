@@ -3,7 +3,7 @@
  */
 public class Winning {
     int bet_ = 1;
-
+    int won = 0;
     private String winningText = new String();
 
     public Winning() {
@@ -34,6 +34,11 @@ public class Winning {
 
     public int getBet() {
         return bet_;
+    }
+
+    public int getWon()
+    {
+        return won;
     }
 
     public void setBet(int bet) {

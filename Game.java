@@ -1,59 +1,77 @@
 /**
  * Created by asIo on 17.4.2016 г.
- *
+ * <p>
  * Създава се обект (инстанция) от класа Game.
  * -
  * -   Game game;
  * -
- *  За да се вземе залог се изиква
- *  -
- *  - game.getWinning().getBet()
- *  -
- *  За да се вземе текста на печалбата се извиква
- *  -
- *  - game.getWinning().toString();
- *  -
- *  За да се вземе ръката като обект от типа class Hand се извиква
- *  -
- *  - game.getHand();
- *  -
- *  При натискане на клавиш се извиква някое от следните събития:
- *  OnBetUp, OnBetDown, OnHold1, OnHold2, OnHold3, OnHold4, OnHold5, OnDeal.
+ * За да се вземе залог се изиква
+ * -
+ * - game.getWinning().getBet()
+ * -
+ * За да се вземе текста на печалбата се извиква
+ * -
+ * - game.getWinning().toString();
+ * -
+ * За да се вземе ръката като обект от типа class Hand се извиква
+ * -
+ * - game.getHand();
+ * -
+ * За да се вземе текущото състояние (портфейл) на играча се извиква
+ * -
+ * - game.getPocket();
+ * -
+ * Като се стартира от 1000.
  *
- *  1. OnBetUp - При натискане на клавиша за вдигане на залога. Залога се вдига през 5 - 1, 5, 10, 15 ... , 100.
- *  -
- *  - game.onEventName("OnBetUp");
- *  -
- *  2. OnBetDown - При натискане на клавиша за сваляне на залога. Залога се сваля през 5 - 100, 95, ... , 10, 5, 1.
- *  -
- *  - game.onEventName("OnBetDown");
- *  -
- *  3. OnHold1 - При натискане на клавиша за задържане на първа карта.
- *  -
- *  - game.onEventName("OnHold1");
- *  -
- *  4. OnHold2 - При натискане на клавиша за задържане на втора карта.
- *  -
- *  - game.onEventName("OnHold2");
- *  -
- *  5. OnHold3 - При натискане на клавиша за задържане на трета карта.
- *  -
- *  - game.onEventName("OnHold3");
- *  -
- *  6. OnHold4 - При натискане на клавиша за задържане на четвърта карта.
- *  -
- *  - game.onEventName("OnHold4");
- *  -
- *  7. OnHold5 - При натискане на клавиша за задържане на пета карта.
- *  -
- *  - game.onEventName("OnHold5");
- *  -
- *  8. Deal - При натискане на клавиша за ново раздаване.
- *  -
- *  - game.onEventName("Deal");
- *  -
- * .
+ * При натискане на клавиш се извиква някое от следните събития:
+ * OnBetUp, OnBetDown, OnHold1, OnHold2, OnHold3, OnHold4, OnHold5, OnDeal.
+ * <p>
+ * 1. OnBetUp - При натискане на клавиша за вдигане на залога. Залога се вдига през 5 - 1, 5, 10, 15 ... , 100.
+ * -
+ * - game.onEventName("OnBetUp");
+ * -
+ * 2. OnBetDown - При натискане на клавиша за сваляне на залога. Залога се сваля през 5 - 100, 95, ... , 10, 5, 1.
+ * -
+ * - game.onEventName("OnBetDown");
+ * -
+ * 3. OnHold1 - При натискане на клавиша за задържане на първа карта.
+ * -
+ * - game.onEventName("OnHold1");
+ * -
+ * 4. OnHold2 - При натискане на клавиша за задържане на втора карта.
+ * -
+ * - game.onEventName("OnHold2");
+ * -
+ * 5. OnHold3 - При натискане на клавиша за задържане на трета карта.
+ * -
+ * - game.onEventName("OnHold3");
+ * -
+ * 6. OnHold4 - При натискане на клавиша за задържане на четвърта карта.
+ * -
+ * - game.onEventName("OnHold4");
+ * -
+ * 7. OnHold5 - При натискане на клавиша за задържане на пета карта.
+ * -
+ * - game.onEventName("OnHold5");
+ * -
+ * 8. Deal - При натискане на клавиша за ново раздаване.
+ * -
+ * - game.onEventName("Deal");
+ * -
+ * На всяко натискане на клавиш да се прави проверката
+ * -
+ * - game.isGameOver();
+ * -
+ * докато връща false, иначе играта да приключи.
+ *
+ * Когато играта приключи можете да стартирате нов игра с
+ * -
+ * - game.startNewGame();
+ * -
+ *
+ *
  */
+
 import java.util.ArrayList;
 
 public class Game {
@@ -68,6 +86,7 @@ public class Game {
         betDown
     }
 
+    private boolean gameOver = false;
     private int round = 0;
     private boolean isHold1Pressed = false;
     private boolean isHold2Pressed = false;
@@ -78,13 +97,14 @@ public class Game {
     private Hand hand;
     private Deck deck;
     private Winning winning = new Winning();
+    private int pocket = 1000;
 
     public Game() {
         winning.setBet(0);
     }
 
     public void onEventName(String event) {
-        switch(event) {
+        switch (event) {
             case "OnBetUp":
                 onEvent(events.betUp);
                 break;
@@ -111,12 +131,25 @@ public class Game {
         }
     }
 
+    public void startNewGame() {
+        gameOver = false;
+        reset();
+    }
+
     public Hand getHand() {
         return hand;
     }
 
     public Winning getWinning() {
         return winning;
+    }
+
+    public int getPocket() {
+        return pocket;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 
     private void onEvent(events event) {
@@ -152,7 +185,13 @@ public class Game {
 
         if (round == 0) {
             //раздава първа ръка
+            onTakeWin();
             reset();
+
+            pocket -= winning.getBet();
+            if (pocket < 0) {
+                gameOver = true;
+            }
             round = 1;
         } else if (round == 1) {
             //заменя нехолднатите карти
@@ -194,17 +233,16 @@ public class Game {
         }
 
         int[] ret = new int[swaps.size()];
-        for (int i=0; i < ret.length; i++) {
+        for (int i = 0; i < ret.length; i++) {
             ret[i] = swaps.get(i);
         }
         return ret;
     }
 
     private void onBetUp() {
-        if(winning.getBet() == 1) {
+        if (winning.getBet() == 1) {
             winning.addBet(4);
-        }
-        else {
+        } else {
             winning.addBet(5);
         }
     }
@@ -229,6 +267,10 @@ public class Game {
 
             }
         }
+    }
+
+    private void onTakeWin() {
+        pocket += winning.getWon();
     }
 }
 
