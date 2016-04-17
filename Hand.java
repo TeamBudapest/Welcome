@@ -9,28 +9,26 @@ public class Hand {
         this.hand = new ArrayList<>();
     }
 
-    public List<Card> getHand() {
-        return this.hand;
-    }
-
-    public void populateHand(Deck d, List<Card> deck) {
+    public List<Card> populateHand(Deck d, List<Card> deck) {
         Random rnd = new Random();
 
         for (int i = 0; i < 5; i++) {
-            Card card = d.getDeck().get(rnd.nextInt(deck.size()));
-            
+            Card card = deck.get(rnd.nextInt(deck.size()));
             hand.add(card);
             d.removeCardFromDeck(deck, card);
         }
+
+        return hand;
     }
 
-    public void swapCards(List<Card> hand, Deck d, int index) {
+    public void swapCardInHand(List<Card> hand, Deck d, int[] indexes) {
         Random rnd = new Random();
-        Card c = d.getDeck().get(rnd.nextInt(d.getDeck().size()));
 
-        hand.remove(index);
-        
-        hand.add(index, c);
-        d.removeCardFromDeck(d.getDeck(), c);
+        for (int i = 0; i < indexes.length; i++) {
+            Card card = d.getDeck().get(rnd.nextInt(d.getDeck().size()));
+            hand.remove(indexes[i]);
+            hand.add(indexes[i], card);
+            d.removeCardFromDeck(d.getDeck(), card);
+        }
     }
 }
