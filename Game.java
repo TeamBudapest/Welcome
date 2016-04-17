@@ -28,7 +28,11 @@ public class Game {
 
     private Hand hand;
     private Deck deck;
-    private String winning;
+    private Winning winning = new Winning();
+
+    public Game() {
+        winning.SetBet(0);
+    }
 
     public void OnEvent(events event) {
 
@@ -57,7 +61,7 @@ public class Game {
     }
 
     public String GetWinning() {
-        return winning;
+        return winning.GetWinning();
     }
 
     private void OnDeal() {
@@ -83,9 +87,7 @@ public class Game {
     }
 
     private void OnCheckWinning(Hand hand) {
-        Winning win = new Winning();
-        win.SetHand(hand);
-        winning = win.GetWinning();
+        winning.SetHand(hand);
     }
 
     private void Reset()
@@ -124,11 +126,18 @@ public class Game {
     }
 
     private void OnBetUp() {
-        //logic
+        if(winning.GetBet() == 1)
+        {
+            winning.AddBet(4);
+        }
+        else
+        {
+            winning.AddBet(5);
+        }
     }
 
     private void OnBetDown() {
-        //logic
+        winning.RemoveBet(5);
     }
 
     private void OnHold(events event) {
@@ -148,11 +157,6 @@ public class Game {
             }
         }
     }
-
-    public Game() {
-
-    }
-
 }
 
 
