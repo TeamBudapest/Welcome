@@ -2,11 +2,13 @@
  * Created by asIo on 17.4.2016 г..
  */
 //import java.util.ArrayList;
+
+import java.util.ArrayList;
 import java.util.List;
 //import java.util.Random;
 
 public class Game {
-    public enum events{
+    public enum events {
         hold1,
         hold2,
         hold3,
@@ -24,13 +26,13 @@ public class Game {
     private boolean isHold4Pressed = false;
     private boolean isHold5Pressed = false;
 
-    Hand hand;
-    Deck deck;
+    private Hand hand;
+    private Deck deck;
+    private String winning;
 
     public void OnEvent(events event) {
 
-        switch(event)
-        {
+        switch (event) {
             case hold1:
             case hold2:
             case hold3:
@@ -50,79 +52,88 @@ public class Game {
         }
     }
 
-    public Hand GetHand()
-    {
+    public Hand GetHand() {
         return hand;
     }
 
-    private void OnDeal()
-    {
-        if(isHold1Pressed == false
+    public String GetWinning() {
+        return winning;
+    }
+
+    private void OnDeal() {
+        if (isHold1Pressed == false
                 && isHold2Pressed == false
                 && isHold3Pressed == false
                 && isHold4Pressed == false
-                && isHold5Pressed == false)
-        {
+                && isHold5Pressed == false) {
             round = 0;
         }
 
-        if(round == 0)
-        {
-            //раздаваш първа ръка - hand.populateHand(deck);
+        if (round == 0) {
+            //раздава първа ръка
+            Reset();
             round = 1;
-        }
-        else if(round == 1)
-        {
-            //заменяш нехолднатите карти
-            //hand.swapCardInHand(deck, getSwapIndex());
+        } else if (round == 1) {
+            //заменя нехолднатите карти
+            hand.swapCardInHand(hand.getHand(), deck, getSwapIndex());
             round = 0;
         }
+
+        OnCheckWinning(hand);
     }
 
-    private int[] getSwapIndex()
-    {
-        int[] swaps;
-
-        if(!isHold1Pressed)
-        {
-            swaps.push(0);
-        }
-        if(!isHold2Pressed)
-        {
-            swaps.push(1);
-        }
-        if(!isHold3Pressed)
-        {
-            swaps.push(2);
-        }
-        if(!isHold4Pressed)
-        {
-            swaps.push(3);
-        }
-        if(!isHold5Pressed)
-        {
-            swaps.push(4);
-        }
-
-        return swaps;
+    private String OnCheckWinning(Hand hand) {
+        Winning win;
+        win.SetHand(hand);
+        winning = win.GetWinning();
     }
 
-    private void OnBetUp()
+    private void Reset()
     {
+        deck.getDeck().removeAll();
+        deck.populateDeck();
+        hand.getHand().removeAll();
+        hand.populateHand(deck, deck.getDeck());
+    }
+
+    private int[] getSwapIndex() {
+        ArrayList<Integer> swaps = new ArrayList<>();
+
+        if (!isHold1Pressed) {
+            swaps.add(1);
+        }
+        if (!isHold2Pressed) {
+            swaps.add(2);
+        }
+        if (!isHold3Pressed) {
+            swaps.add(3);
+        }
+        if (!isHold4Pressed) {
+            swaps.add(4);
+        }
+        if (!isHold5Pressed) {
+            swaps.add(5);
+        }
+
+        int[] ret = new int[swaps.size()];
+        for (int i=0; i < ret.length; i++)
+        {
+            ret[i] = swaps.get(i).intValue();
+        }
+        return ret;
+    }
+
+    private void OnBetUp() {
         //logic
     }
 
-    private void OnBetDown()
-    {
+    private void OnBetDown() {
         //logic
     }
 
-    private void OnHold(events event)
-    {
-        if(round == 0)
-        {
-            switch(event)
-            {
+    private void OnHold(events event) {
+        if (round == 0) {
+            switch (event) {
                 case hold1:
                     isHold1Pressed = !isHold1Pressed;
                 case hold2:
@@ -142,17 +153,6 @@ public class Game {
 
     }
 
-
-//    public void swapCardInHand(List<Card> hand, Deck d, int[] indexes) {
-//        Random rnd = new Random();
-//
-//        for (int i = 0; i < indexes.length; i++) {
-//            Card card = d.getDeck().get(rnd.nextInt(d.getDeck().size()));
-//            hand.remove(indexes[i]);
-//            hand.add(indexes[i], card);
-//            d.removeCardFromDeck(d.getDeck(), card);
-//        }
-//    }
 }
 
 

@@ -21,6 +21,10 @@ public class Hand {
         return hand;
     }
 
+    public List<Card> getHand() {
+        return this.hand;
+    }
+
     public void swapCardInHand(List<Card> hand, Deck d, int[] indexes) {
         Random rnd = new Random();
 
