@@ -3,8 +3,6 @@ import java.util.List;
 
 public class Deck {
     private List<Card> deck;
-    private String[] suits = {"♥", "♣", "♦", "♠"};
-    private String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 
     public Deck() {
         this.deck = new ArrayList<>();
@@ -15,9 +13,9 @@ public class Deck {
     }
 
     public List<Card> populateDeck() {
-        for (int i = 0; i < ranks.length; i++) {
-            for (int j = 0; j < suits.length; j++) {
-                Card card = new Card(ranks[i], suits[j]);
+        for (int i = 0; i < 13; i++) {
+            for (int j = 0; j < 4; j++) {
+                Card card = new Card(i, j);
                 deck.add(card);
             }
         }
