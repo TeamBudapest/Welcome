@@ -82,17 +82,17 @@ public class Game {
         OnCheckWinning(hand);
     }
 
-    private String OnCheckWinning(Hand hand) {
-        Winning win;
+    private void OnCheckWinning(Hand hand) {
+        Winning win = new Winning();
         win.SetHand(hand);
         winning = win.GetWinning();
     }
 
     private void Reset()
     {
-        deck.getDeck().removeAll();
+        deck.getDeck().clear();
         deck.populateDeck();
-        hand.getHand().removeAll();
+        hand.getHand().clear();
         hand.populateHand(deck, deck.getDeck());
     }
 
@@ -118,7 +118,7 @@ public class Game {
         int[] ret = new int[swaps.size()];
         for (int i=0; i < ret.length; i++)
         {
-            ret[i] = swaps.get(i).intValue();
+            ret[i] = swaps.get(i);
         }
         return ret;
     }
