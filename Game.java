@@ -7,50 +7,50 @@
  * -
  *  За да се вземе залог се изиква
  *  -
- *  - game.GetWinning().GetBet()
+ *  - game.getWinning().getBet()
  *  -
  *  За да се вземе текста на печалбата се извиква
  *  -
- *  - game.GetWinning().ToString();
+ *  - game.getWinning().toString();
  *  -
  *  За да се вземе ръката като обект от типа class Hand се извиква
  *  -
- *  - game.GetHand();
+ *  - game.getHand();
  *  -
  *  При натискане на клавиш се извиква някое от следните събития:
  *  OnBetUp, OnBetDown, OnHold1, OnHold2, OnHold3, OnHold4, OnHold5, OnDeal.
  *
  *  1. OnBetUp - При натискане на клавиша за вдигане на залога. Залога се вдига през 5 - 1, 5, 10, 15 ... , 100.
  *  -
- *  - game.OnEventName("OnBetUp");
+ *  - game.onEventName("OnBetUp");
  *  -
  *  2. OnBetDown - При натискане на клавиша за сваляне на залога. Залога се сваля през 5 - 100, 95, ... , 10, 5, 1.
  *  -
- *  - game.OnEventName("OnBetDown");
+ *  - game.onEventName("OnBetDown");
  *  -
  *  3. OnHold1 - При натискане на клавиша за задържане на първа карта.
  *  -
- *  - game.OnEventName("OnHold1");
+ *  - game.onEventName("OnHold1");
  *  -
  *  4. OnHold2 - При натискане на клавиша за задържане на втора карта.
  *  -
- *  - game.OnEventName("OnHold2");
+ *  - game.onEventName("OnHold2");
  *  -
  *  5. OnHold3 - При натискане на клавиша за задържане на трета карта.
  *  -
- *  - game.OnEventName("OnHold3");
+ *  - game.onEventName("OnHold3");
  *  -
  *  6. OnHold4 - При натискане на клавиша за задържане на четвърта карта.
  *  -
- *  - game.OnEventName("OnHold4");
+ *  - game.onEventName("OnHold4");
  *  -
  *  7. OnHold5 - При натискане на клавиша за задържане на пета карта.
  *  -
- *  - game.OnEventName("OnHold5");
+ *  - game.onEventName("OnHold5");
  *  -
  *  8. Deal - При натискане на клавиша за ново раздаване.
  *  -
- *  - game.OnEventName("Deal");
+ *  - game.onEventName("Deal");
  *  -
  * .
  */
@@ -80,46 +80,46 @@ public class Game {
     private Winning winning = new Winning();
 
     public Game() {
-        winning.SetBet(0);
+        winning.setBet(0);
     }
 
-    public void OnEventName(String event) {
+    public void onEventName(String event) {
         switch(event) {
             case "OnBetUp":
-                OnEvent(events.betUp);
+                onEvent(events.betUp);
                 break;
             case "OnBetDown":
-                OnEvent(events.betDown);
+                onEvent(events.betDown);
                 break;
             case "OnHold1":
-                OnEvent(events.hold1);
+                onEvent(events.hold1);
                 break;
             case "OnHold2":
-                OnEvent(events.hold2);
+                onEvent(events.hold2);
                 break;
             case "OnHold3":
-                OnEvent(events.hold3);
+                onEvent(events.hold3);
                 break;
             case "OnHold4":
-                OnEvent(events.hold4);
+                onEvent(events.hold4);
                 break;
             case "OnHold5":
-                OnEvent(events.hold5);
+                onEvent(events.hold5);
                 break;
             case "OnDeal":
-                OnEvent(events.deal);
+                onEvent(events.deal);
         }
     }
 
-    public Hand GetHand() {
+    public Hand getHand() {
         return hand;
     }
 
-    public String GetWinning() {
-        return winning.ToString();
+    public Winning getWinning() {
+        return winning;
     }
 
-    private void OnEvent(events event) {
+    private void onEvent(events event) {
 
         switch (event) {
             case hold1:
@@ -127,21 +127,21 @@ public class Game {
             case hold3:
             case hold4:
             case hold5:
-                OnHold(event);
+                onHold(event);
                 break;
             case deal:
-                OnDeal();
+                onDeal();
                 break;
             case betUp:
-                OnBetUp();
+                onBetUp();
                 break;
             case betDown:
-                OnBetDown();
+                onBetDown();
                 break;
         }
     }
 
-    private void OnDeal() {
+    private void onDeal() {
         if (isHold1Pressed == false
                 && isHold2Pressed == false
                 && isHold3Pressed == false
@@ -152,7 +152,7 @@ public class Game {
 
         if (round == 0) {
             //раздава първа ръка
-            Reset();
+            reset();
             round = 1;
         } else if (round == 1) {
             //заменя нехолднатите карти
@@ -160,14 +160,14 @@ public class Game {
             round = 0;
         }
 
-        OnCheckWinning(hand);
+        onCheckWinning(hand);
     }
 
-    private void OnCheckWinning(Hand hand) {
-        winning.SetHand(hand);
+    private void onCheckWinning(Hand hand) {
+        winning.setHand(hand);
     }
 
-    private void Reset() {
+    private void reset() {
         deck.getDeck().clear();
         deck.populateDeck();
         hand.getHand().clear();
@@ -200,20 +200,20 @@ public class Game {
         return ret;
     }
 
-    private void OnBetUp() {
-        if(winning.GetBet() == 1) {
-            winning.AddBet(4);
+    private void onBetUp() {
+        if(winning.getBet() == 1) {
+            winning.addBet(4);
         }
         else {
-            winning.AddBet(5);
+            winning.addBet(5);
         }
     }
 
-    private void OnBetDown() {
-        winning.RemoveBet(5);
+    private void onBetDown() {
+        winning.removeBet(5);
     }
 
-    private void OnHold(events event) {
+    private void onHold(events event) {
         if (round == 0) {
             switch (event) {
                 case hold1:

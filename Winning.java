@@ -10,7 +10,7 @@ public class Winning {
 
     }
 
-    private void SetHandCalc(Hand hand) {
+    private void setHandCalc(Hand hand) {
         winningText = null;//winningText = ?
 
         //От ръката се взимат текущите карти
@@ -23,20 +23,20 @@ public class Winning {
         //и по-малка или равна на 100;
     }
 
-    public void SetHand(Hand hand) {
+    public void setHand(Hand hand) {
         winningText = null;
-        SetHandCalc(hand);
+        setHandCalc(hand);
     }
 
-    public String ToString() {
+    public String toString() {
         return winningText;
     }
 
-    public int GetBet() {
+    public int getBet() {
         return bet_;
     }
 
-    public void SetBet(int bet) {
+    public void setBet(int bet) {
         if(bet > 100) {
             bet_ = 100;
         }
@@ -48,11 +48,11 @@ public class Winning {
         }
     }
 
-    public void AddBet(int bet) {
+    public void addBet(int bet) {
         bet_ += bet;
     }
 
-    public void RemoveBet(int bet) {
+    public void removeBet(int bet) {
         bet_ -= bet;
         if(bet_ < 1) {
             bet_ = 1;
