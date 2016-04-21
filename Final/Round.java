@@ -27,6 +27,7 @@ public class Round {
         return this.prizeAsText;
     }
 
+    //check the combination of cards in the hand and determine the prize, starting from the biggest one
     public int determinePrize(List<Card> hand, Prize p) {
         if (p.isRoyalFlush(hand)) {
             this.multiplier = 500;
@@ -57,6 +58,7 @@ public class Round {
             prizeAsText = "Nothing";
         }
 
+        //calculate prize
         int prize = this.calculateEarnings();
 
         return prize;
