@@ -116,7 +116,7 @@ public class Controller implements Initializable {
     @FXML
     private Text gameOver;
 
-    //detrmines when a hold buttons is clicked
+    //determines when a hold buttons is clicked
     private boolean isHoldOneClicked = false;
     private boolean isHoldTwoClicked = false;
     private boolean isHoldThreeClicked = false;
