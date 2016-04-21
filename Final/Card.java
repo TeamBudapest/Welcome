@@ -1,6 +1,6 @@
 package sample;
 
-public class Card implements Comparable<Card>{
+public class Card implements Comparable<Card> {
     private static String[] ranks =
             { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King" };
     private static String[] suits = { "clubs", "spades", "diamonds", "hearts" };
