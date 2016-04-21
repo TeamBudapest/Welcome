@@ -10,10 +10,12 @@ public class Deck {
         this.deck = new ArrayList<>();
     }
 
+    //returns the cards in the deck
     public List<Card> getDeck() {
         return this.deck;
     }
 
+    //populate the cards in the deck
     public List<Card> populateDeck() {
         for (int i = 0; i < 13; i++) {
             for (int j = 0; j < 4; j++) {
@@ -25,6 +27,7 @@ public class Deck {
         return deck;
     }
 
+    //remove chosen card from the deck
     public void removeCardFromDeck(List<Card> deck, Card card) {
         deck.remove(card);
     }
