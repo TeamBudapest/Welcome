@@ -62,7 +62,7 @@ public class Prize {
         return true;
     }
 
-    public String isThreeOfAKindOrIsPoker (List<Card> hand) {
+    public String isThreeOfAKindOrIsPoker(List<Card> hand) {
         List<Card> currentHand = new ArrayList<>(hand);
         Collections.sort(currentHand);
 
@@ -91,7 +91,7 @@ public class Prize {
         return "None of them";
     }
 
-    public boolean isStreetFlush (List<Card> hand){
+    public boolean isStreetFlush(List<Card> hand){
         List<Card> currentHand = new ArrayList<>(hand);
         Collections.sort(currentHand);
         int suit = currentHand.get(0).getSuit();
@@ -155,7 +155,7 @@ public class Prize {
         return true;
     }
 
-    public boolean isStreet (List<Card> hand) {
+    public boolean isStreet(List<Card> hand) {
         List<Integer> currentHandRanks = new ArrayList<>();
         List<Integer> possibleRanks = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0);
         int startIndex = Integer.MAX_VALUE;
@@ -189,7 +189,7 @@ public class Prize {
         return true;
     }
 
-    public boolean isFullHouse (List<Card> hand) {
+    public boolean isFullHouse(List<Card> hand) {
         List<Integer> currentHandRanks = new ArrayList<>();
         String threeOfAKind = isThreeOfAKindOrIsPoker(hand);
 
