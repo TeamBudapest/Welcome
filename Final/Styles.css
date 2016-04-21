@@ -1,0 +1,30 @@
+#background {
+    -fx-background-image: url("Cards/background.jpg");
+}
+
+#holdOne, #holdTwo, #holdThree, #holdFour, #holdFive {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#holdButtonClicked {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#45484d, #000000);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 5, 0.0 , 0 , 1 );
+}
+
+#cardOne, #cardTwo, #cardThree, #cardFour, #cardFive {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-border-width: 10;
+    -fx-border-insets: 10 10 10 10;
+    -fx-border-color: black;
+}
+
+#btnDeal {
+    -fx-background-radius: 15px;
+ }

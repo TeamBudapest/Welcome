@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane id="background" prefHeight="568.0" prefWidth="576.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Text fx:id="gameOver" fill="#fc0000" layoutX="14.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="552.8623046875">
+         <font>
+            <Font name="Arial Black" size="70.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="rect1" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="225.0" layoutX="35.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" width="337.0" />
+      <HBox layoutX="51.0" layoutY="50.0" prefHeight="212.0" prefWidth="244.0" spacing="55.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" style="-fx-padding: 10;">
+               <children>
+                  <Text fx:id="royalFlush" strokeType="OUTSIDE" strokeWidth="0.0" text="Royal Flush">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="streetFlush" strokeType="OUTSIDE" strokeWidth="0.0" text="Street Flush">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="poker" layoutX="20.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poker">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="fullHouse" layoutX="20.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full House">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="street" layoutX="20.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Street">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="threeOfAKind" layoutX="20.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Three of a kind">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="twoPairs" layoutX="20.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Two Pairs">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="onePair" layoutX="20.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="One Pair">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox prefHeight="212.0" prefWidth="100.0" spacing="8.0" style="-fx-padding: 10;">
+               <children>
+                  <Text fx:id="royalFlushMultiplier" strokeType="OUTSIDE" strokeWidth="0.0" text="X500" textAlignment="RIGHT" wrappingWidth="97.6962890625">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="streetFlushMultiplier" strokeType="OUTSIDE" strokeWidth="0.0" text="x100" textAlignment="RIGHT" wrappingWidth="96.14453125">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="pokerMultiplier" layoutX="20.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x40" textAlignment="RIGHT" wrappingWidth="97.3583984375">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="fullHouseMultiplier" layoutX="20.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x10" textAlignment="RIGHT" wrappingWidth="96.3583984375">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="streetMultiplier" layoutX="20.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x5" textAlignment="RIGHT" wrappingWidth="93.572265625">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="threeOfAKindMultiplier" layoutX="20.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x3" textAlignment="RIGHT" wrappingWidth="95.572265625">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="twoPairsMultiplier" layoutX="20.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" textAlignment="RIGHT" wrappingWidth="96.572265625">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="onePairMultiplier" layoutX="20.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x1" textAlignment="RIGHT" wrappingWidth="97.572265625">
+                     <font>
+                        <Font name="Arial Bold Italic" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Text layoutX="163.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Winnings">
+         <font>
+            <Font name="Arial Bold" size="23.0" />
+         </font></Text>
+      <Rectangle fx:id="rect2" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="68.0" layoutX="429.0" layoutY="200.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
+      <Rectangle fx:id="rect3" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="68.0" layoutX="429.0" layoutY="122.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
+      <Rectangle fx:id="rect4" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="68.0" layoutX="429.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="102.0" />
+      <Rectangle fx:id="rect5" arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="235.0" layoutX="22.0" layoutY="299.0" stroke="BLACK" strokeType="INSIDE" width="528.0" />
+      <HBox layoutX="45.0" layoutY="423.0" prefHeight="45.0" prefWidth="473.0" spacing="60.0">
+         <children>
+            <Button fx:id="holdOne" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="23.0" prefWidth="51.0" text="Hold" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="holdTwo" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="51.0" text="Hold" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="holdThree" alignment="TOP_LEFT" layoutX="53.0" layoutY="10.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="51.0" text="Hold" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="holdFour" alignment="TOP_LEFT" layoutX="96.0" layoutY="10.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="51.0" text="Hold" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="holdFive" alignment="TOP_LEFT" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="51.0" text="Hold" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="imageBox" layoutX="43.0" layoutY="319.0" prefHeight="104.0" prefWidth="485.0" spacing="20.0">
+         <children>
+            <ImageView fx:id="cardOne" fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" />
+            <ImageView fx:id="cardTwo" fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" />
+            <ImageView fx:id="cardThree" fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" />
+            <ImageView fx:id="cardFour" fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" />
+            <ImageView fx:id="cardFive" fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" />
+         </children>
+      </HBox>
+      <Button fx:id="btnDeal" layoutX="166.0" layoutY="480.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="244.0" text="Deal">
+         <font>
+            <Font name="Arial Bold Italic" size="22.0" />
+         </font>
+      </Button>
+   <ImageView fx:id="plus" fitHeight="60.0" fitWidth="81.0" layoutX="460.0" layoutY="467.0" pickOnBounds="true" />
+   <ImageView fx:id="minus" fitHeight="60.0" fitWidth="81.0" layoutX="32.0" layoutY="467.0" pickOnBounds="true" />
+      <VBox layoutX="428.0" layoutY="52.0" prefHeight="52.0" prefWidth="102.0" spacing="10.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CREDIT:" textAlignment="CENTER" wrappingWidth="102.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtCredit" strokeType="OUTSIDE" strokeWidth="0.0" text="100" textAlignment="CENTER" wrappingWidth="104.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="429.0" layoutY="208.0" prefHeight="52.0" prefWidth="102.0" spacing="10.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="REWARD:" textAlignment="CENTER" wrappingWidth="102.2197265625">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtReward" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="CENTER" wrappingWidth="101.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="429.0" layoutY="130.0" prefHeight="52.0" prefWidth="102.0" spacing="10.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="BET:" textAlignment="CENTER" wrappingWidth="102.2197265625">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtBet" strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" wrappingWidth="101.0">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </children>
+</Pane>
