@@ -116,13 +116,13 @@ public class Controller implements Initializable {
     @FXML
     private Text gameOver;
 
+    //detrmines when a hold buttons is clicked
     private boolean isHoldOneClicked = false;
     private boolean isHoldTwoClicked = false;
     private boolean isHoldThreeClicked = false;
     private boolean isHoldFourClicked = false;
     private boolean isHoldFiveClicked = false;
 
-    //private int startCredit = 100;
     private int round = 1;
     private int bet = 5;
 
@@ -131,7 +131,9 @@ public class Controller implements Initializable {
     private Prize p;
     private Round r;
 
+    //stores cards in deck
     private List<Card> deck;
+    //stores cards in hand
     private List<Card> hand;
 
     private Image imageMinus;
@@ -141,9 +143,12 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DropShadow shadow = new DropShadow();
 
+        //show + and - buttons
         enableIncreaseDecreaseButtons();
+        //disable hold buttons at startUp
         disableHoldButton();
 
+        //load image for cards starting view
         Image cardBack = new Image("file:resources/back.jpg");
         cardOne.setImage(cardBack);
         cardTwo.setImage(cardBack);
@@ -158,18 +163,25 @@ public class Controller implements Initializable {
         p = new Prize();
         r = new Round(bet);
 
+        //loads cards into the deck
         deck = d.populateDeck();
+        //loads cards into the hand
         hand = h.populateHand(d, deck);
 
+        //when Deal button is clicked
         btnDeal.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                //hide + and - buttons
                 disableIncreaseDecreaseButtons();
+                //enable hold buttons
                 enableHoldButton();
 
+                //during first part of the round
                 if (round == 1) {
                     bet = Integer.parseInt(txtBet.getText());
-
+                    
+                    //prevents credit to fall beneath 0
                     int currentCredit = Integer.parseInt(txtCredit.getText());
                     currentCredit -= bet;
                     if (currentCredit < 0) {
@@ -180,36 +192,46 @@ public class Controller implements Initializable {
                     btnDeal.setText("Deal");
 
                     enableHoldButton();
-
+                    
+                    //creates paths for each card image
                     String[] paths = createPath(hand);
                     List<Image> images = createImage(paths);
 
+                    //load card images
                     cardOne.setImage(images.get(0));
                     cardTwo.setImage(images.get(1));
                     cardThree.setImage(images.get(2));
                     cardFour.setImage(images.get(3));
                     cardFive.setImage(images.get(4));
 
+                    //increment to second part of round
                     round++;
 
                     changeBackColorOfPrize();
+                    
+                //when second part of round
                 } else if (round == 2) {
+                    //determines which cards to be replaces
                     int[] swapIndexes = calculateSwapIndexes();
+                    //replace cards from hand
                     h.swapCardInHand(hand, d, swapIndexes);
 
                     btnDeal.setText("New Round");
 
                     removeButtonEffect();
 
+                    //creates paths for each card image
                     String[] paths2 = createPath(hand);
                     List<Image> images2 = createImage(paths2);
 
+                    //loads images
                     cardOne.setImage(images2.get(0));
                     cardTwo.setImage(images2.get(1));
                     cardThree.setImage(images2.get(2));
                     cardFour.setImage(images2.get(3));
                     cardFive.setImage(images2.get(4));
 
+                    //calculates prize
                     int prize = r.determinePrize(hand, p);
                     String prizeAsText = r.getPrice();
                     txtReward.setText(Integer.toString(prize));
@@ -225,6 +247,7 @@ public class Controller implements Initializable {
                     resetHoldBooleans();
                     resetHoldButtons();
 
+                    //determines if game over
                     if (Integer.parseInt(txtCredit.getText()) > 0) {
                         enableIncreaseDecreaseButtons();
                         disableHoldButton();
@@ -236,6 +259,7 @@ public class Controller implements Initializable {
                         gameOver.toFront();
                     }
 
+                    //clear hand and deck and load new cards
                     deck.clear();
                     hand.clear();
                     deck = d.populateDeck();
@@ -246,6 +270,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //lower bet
         minus.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
@@ -259,6 +284,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //raise bet
         plus.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
@@ -277,6 +303,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //first hold button
         holdOne.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -290,6 +317,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //second hold button
         holdTwo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -303,6 +331,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //third hold button
         holdThree.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -316,6 +345,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //fourth hold button
         holdFour.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -329,6 +359,7 @@ public class Controller implements Initializable {
             }
         });
 
+        //fifth hold button
         holdFive.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -343,6 +374,7 @@ public class Controller implements Initializable {
         });
     }
 
+    //creates paths for the card images
     private String[] createPath(List<Card> hand) {
         String[] paths = new String[hand.size()];
 
@@ -353,6 +385,7 @@ public class Controller implements Initializable {
         return paths;
     }
 
+    //create the card images
     private List<Image> createImage(String[] paths) {
         List<Image> images = new ArrayList<>();
 
@@ -363,6 +396,7 @@ public class Controller implements Initializable {
         return images;
     }
 
+    //determine with cards to be replaced
     private int[] calculateSwapIndexes() {
         int[] swapIndexes = new int[5];
 
@@ -375,6 +409,7 @@ public class Controller implements Initializable {
         return swapIndexes;
     }
 
+    //return prize text back to black
     private void changeBackColorOfPrize() {
         royalFlush.setFill(Color.BLACK);
         royalFlushMultiplier.setFill(Color.BLACK);
@@ -401,6 +436,7 @@ public class Controller implements Initializable {
         onePairMultiplier.setFill(Color.BLACK);
     }
 
+    //sets prize text to red
     private void changeColorOfPrize(String prizeAsText) {
         switch (prizeAsText) {
             case "Royal Flush":
@@ -438,6 +474,7 @@ public class Controller implements Initializable {
         }
     }
 
+    //change hold buttons to start view
     private void removeButtonEffect() {
         holdOne.setEffect(null);
         holdTwo.setEffect(null);
@@ -446,6 +483,7 @@ public class Controller implements Initializable {
         holdFive.setEffect(null);
     }
 
+    //disable hold buttons
     private void disableHoldButton() {
         holdOne.setDisable(true);
         holdTwo.setDisable(true);
@@ -454,6 +492,7 @@ public class Controller implements Initializable {
         holdFive.setDisable(true);
     }
 
+    //enable hold buttons
     private void enableHoldButton() {
         holdOne.setDisable(false);
         holdTwo.setDisable(false);
@@ -462,6 +501,7 @@ public class Controller implements Initializable {
         holdFive.setDisable(false);
     }
 
+    //reset hold buttons state
     private void resetHoldBooleans() {
         isHoldOneClicked = false;
         isHoldTwoClicked = false;
@@ -470,6 +510,7 @@ public class Controller implements Initializable {
         isHoldFiveClicked = false;
     }
 
+    //disable increase bet and decrease bet buttons
     private void disableIncreaseDecreaseButtons() {
         imageMinus = null;
         imagePlus = null;
@@ -478,6 +519,7 @@ public class Controller implements Initializable {
         minus.setImage(imageMinus);
     }
 
+    //enable increase bet and decrease bet buttons
     private void enableIncreaseDecreaseButtons() {
         imagePlus = new Image("file:resources/plus.jpg");
         plus.setImage(imagePlus);
@@ -486,6 +528,7 @@ public class Controller implements Initializable {
         minus.setImage(imageMinus);
     }
 
+    //change hold buttons id to start id
     private void resetHoldButtons() {
         holdOne.setId("holdOne");
         holdTwo.setId("holdTwo");
